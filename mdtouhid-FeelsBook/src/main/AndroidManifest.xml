@@ -21,8 +21,7 @@
             android:label="FeelsBook History" />
         <activity android:name=".ChaningDateWithSorting" />
         <activity android:name=".JustTheDateClockMenu" />
-        <activity android:name=".countShower" />
-        <activity android:name=".FeelingCountShower"></activity>
+        <activity android:name=".FeelingCountShower" />
     </application>
 
 </manifest>
