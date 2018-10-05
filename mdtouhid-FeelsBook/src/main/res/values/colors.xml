@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <!-- Primary color of the app (shown in the app bar) -->
+    <color name="primary_color">#4A312A</color>
+
+    <!-- Primary dark color of the app (shown in the status bar) -->
+    <color name="primary_dark_color">#2F1D1A</color>
+
+    <!-- Background color for app -->
+    <color name="tan_background">#FFF7DA</color>
+
+    <!-- Background color for the love category -->
+    <color name="category_love">#CE4676</color>
+
+    <!-- Background color for the joy category -->
+    <color name="category_joy">#FD8E09</color>
+
+    <!-- Background color for the surprise category -->
+    <color name="category_surprise">#8800A0</color>
+
+    <!-- Background color for the sad category -->
+    <color name="category_sad">#2A3B90</color>
+
+    <!-- Background color for the angry category -->
+    <color name="category_angry">#A91834</color>
+
+    <!-- Background color for the fear category -->
+    <color name="category_fear">#3C0000</color>
+
+    <!-- Background color for the history category -->
+    <color name="category_history">#4C516D </color>
+
+    <!-- Background color for the clear category -->
+    <color name="category_clear">#8C92AC</color>
+
+    <!-- Background color for the comment category -->
+    <color name="category_comment">#FFFFFF</color>
+
+</resources>

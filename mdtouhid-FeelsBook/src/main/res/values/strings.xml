@@ -1,0 +1,54 @@
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<resources>
+    <!-- Title for the application. [CHAR LIMIT=12] -->
+    <string name="app_name">FeelsBook</string>
+
+    <!-- Category name for love [CHAR LIMIT=20] -->
+    <string name="category_love">Love</string>
+
+    <!-- Category name for joy [CHAR LIMIT=20] -->
+    <string name="category_joy">Joy</string>
+
+    <!-- Category name for surprise [CHAR LIMIT=20] -->
+    <string name="category_surprise">Surprise</string>
+
+    <!-- Category name for sad [CHAR LIMIT=20] -->
+    <string name="category_sad">Sad</string>
+
+    <!-- Category name for angry [CHAR LIMIT=20] -->
+    <string name="category_angry">Angry</string>
+
+    <!-- Category name for fear [CHAR LIMIT=20] -->
+    <string name="category_fear">Fear</string>
+
+    <!-- Category name for history [CHAR LIMIT=20] -->
+    <string name="category_history">History</string>
+
+    <!-- Category name for clear [CHAR LIMIT=20] -->
+    <string name="category_delete">Delete All</string>
+
+    <!-- Category name for hint [CHAR LIMIT=20] -->
+    <string name="category_hint_comment">Comments (Limit = 100 characters)</string>
+
+    <!-- Category name for hint [CHAR LIMIT=20] -->
+    <string name="category_hint_feeling">Your Feelings!</string>
+
+    <!-- Category name for hint [CHAR LIMIT=20] -->
+    <string name="category_hint_time">Time</string>
+
+    <!-- Category name for hint [CHAR LIMIT=20] -->
+    <string name="category_hint_comment_on_the_feeling">Comment on the feeling</string>
+</resources>

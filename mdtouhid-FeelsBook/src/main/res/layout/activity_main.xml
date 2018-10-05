@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2016 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.android.myfeeling.MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/tan_background"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/love"
+            style="@style/CategoryStyle"
+            android:background="@color/category_love"
+            android:text="@string/category_love"
+            android:onClick="onClickLove"/>
+
+        <Button
+            android:id="@+id/joy"
+            style="@style/CategoryStyle"
+            android:background="@color/category_joy"
+            android:text="@string/category_joy"
+            android:onClick="onClickJoy"/>
+
+        <Button
+            android:id="@+id/surprise"
+            style="@style/CategoryStyle"
+            android:background="@color/category_surprise"
+            android:text="@string/category_surprise"
+            android:onClick="onClickSurprise"/>
+
+        <Button
+            android:id="@+id/sad"
+            style="@style/CategoryStyle"
+            android:background="@color/category_sad"
+            android:text="@string/category_sad"
+            android:onClick="onClickSad"/>
+
+        <Button
+            android:id="@+id/angry"
+            style="@style/CategoryStyle"
+            android:background="@color/category_angry"
+            android:text="@string/category_angry"
+            android:onClick="onClickAngry"/>
+
+        <Button
+            android:id="@+id/fear"
+            style="@style/CategoryStyle"
+            android:background="@color/category_fear"
+            android:text="@string/category_fear"
+            android:onClick="onClickFear"/>
+
+        <TextView
+            android:id="@+id/feel_message_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CategoryMessage"
+            tools:text="@string/category_hint_feeling"/>
+
+        <TextView
+            android:id="@+id/feel_date_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CategoryMessage"
+            tools:text="@string/category_hint_time"/>
+
+        <TextView
+            android:id="@+id/comment_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/CategoryMessage"
+            tools:text="@string/category_hint_comment_on_the_feeling"/>
+
+        <EditText
+            android:id="@+id/comment_about_the_feeling"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/category_hint_comment" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <Button
+                android:id="@+id/history"
+                style="@style/CategoryStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/category_history"
+                android:text="@string/category_history" />
+
+            <Button
+                android:id="@+id/clear"
+                style="@style/CategoryStyle"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:background="@color/category_clear"
+                android:text="@string/category_delete"
+                android:onClick="removeAll"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/feeling_date_changer"
+            style="@style/CategoryStyle"
+            android:background="@color/category_love"
+            android:text="Edit Feeling Date" />
+
+        <Button
+            android:id="@+id/count_Shower"
+            style="@style/CategoryStyle"
+            android:background="@color/category_joy"
+            android:text="Data Summary" />
+
+    </LinearLayout>
+
+
+</ScrollView>
