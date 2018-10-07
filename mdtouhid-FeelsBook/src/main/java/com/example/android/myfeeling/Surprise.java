@@ -5,8 +5,6 @@ import com.google.gson.annotations.SerializedName;
 import java.io.Serializable;
 
 public class Surprise extends Feeling {
-    @SerializedName("counter")
-    private static int countSurprise;
 
     @SerializedName("feelingState")
     private String surprise;
@@ -18,26 +16,6 @@ public class Surprise extends Feeling {
         surprise = setFeeling();
 
         imageResourceID = setImageResourceID();
-
-        countSurprise++;
-    }
-
-    @Override
-    public void destructor() {
-        countSurprise--;
-    }
-
-    @Override
-    public String returnCounter() {
-        return ""+countSurprise;
-    }
-
-    public int getCounter() {
-        return countSurprise;
-    }
-
-    public void setCounter(int count) {
-        countSurprise = count;
     }
 
     public String setFeeling(){

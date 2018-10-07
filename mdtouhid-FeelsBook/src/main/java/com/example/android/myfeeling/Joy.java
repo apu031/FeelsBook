@@ -6,9 +6,6 @@ import java.io.Serializable;
 
 public class Joy extends Feeling {
 
-    @SerializedName("counter")
-    private static int countJoy;
-
     @SerializedName("feelingState")
     private String joy;
 
@@ -20,27 +17,6 @@ public class Joy extends Feeling {
 
         imageResourceID = setImageResourceID();
 
-        countJoy++;
-    }
-
-    @Override
-    public void destructor() {
-        countJoy--;
-    }
-
-    @Override
-    public String returnCounter() {
-        return ""+countJoy;
-    }
-
-    @Override
-    public int getCounter() {
-        return countJoy;
-    }
-
-    @Override
-    public void setCounter(int count) {
-        countJoy = count;
     }
 
     public String setFeeling(){

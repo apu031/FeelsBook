@@ -27,14 +27,6 @@ public abstract class Feeling extends ISO8601_Time_Format implements Serializabl
 
     public abstract String setFeeling();
 
-    public abstract void destructor();
-
-    public abstract String returnCounter();
-
-    public abstract int getCounter();
-
-    public abstract void setCounter(int count);
-
     public String getFeelingTime(){
         return timeOfFelt;
     }

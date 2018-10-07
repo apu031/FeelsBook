@@ -20,28 +20,8 @@ public class Sad extends Feeling {
 
         imageResourceID = setImageResourceID();
 
-        countSad++;
     }
 
-    @Override
-    public void destructor() {
-        countSad--;
-    }
-
-    @Override
-    public String returnCounter() {
-        return ""+countSad;
-    }
-
-    @Override
-    public int getCounter() {
-        return countSad;
-    }
-
-    @Override
-    public void setCounter(int count) {
-        countSad = count;
-    }
 
     public String setFeeling(){
             return "I'm sad.";

@@ -6,8 +6,6 @@ import java.io.Serializable;
 
 public class EmptyNess extends Feeling {
 
-    private static int counter;
-
     private String feelingState;
 
     private int imageResourceID;
@@ -18,24 +16,9 @@ public class EmptyNess extends Feeling {
         imageResourceID = setImageResourceID();
     }
 
-    @Override
-    public String returnCounter() {
-        return ""+counter;
-    }
-
-    public int getCounter() {
-        return counter;
-    }
-
-    public void setCounter(int count) {
-        counter = count;
-    }
-
     public String setFeeling(){
         return "";
     }
-
-    public void destructor(){counter--;}
 
     public String getFeeling(){
         return feelingState;

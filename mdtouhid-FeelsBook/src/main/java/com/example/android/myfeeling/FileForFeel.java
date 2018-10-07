@@ -18,15 +18,19 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
-public class FileForFeel extends AppCompatActivity implements Serializable {
+public class FileForFeel extends AppCompatActivity {
 
-    public FileForFeel(){
+    private Context context;
+
+    public FileForFeel(Context context){
+
+        context = context;
 
     }
-    public void loadFromFile(String fileName, ArrayList<Feeling> feelings){
+    public ArrayList<Feeling> loadFromFile(Context context, String fileName, ArrayList<Feeling> feelings){
 
         try{
-            FileInputStream fis = openFileInput(fileName);
+            FileInputStream fis = context.openFileInput(fileName);
 
             BufferedReader input = new BufferedReader(new InputStreamReader(fis));
 
@@ -44,7 +48,7 @@ public class FileForFeel extends AppCompatActivity implements Serializable {
 
             fis.close();
 
-            Toast.makeText(getBaseContext(), "File was read!", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "File was read!", Toast.LENGTH_LONG).show();
 
         }
         catch (Exception e){
@@ -52,11 +56,13 @@ public class FileForFeel extends AppCompatActivity implements Serializable {
             Toast.makeText(getBaseContext(), "Error reading file!", Toast.LENGTH_SHORT).show();
         }
 
+        return feelings;
+
     }
 
-    public void saveInFile(String fileName, ArrayList<Feeling> feelings, int contextMode) {
+    public void saveInFile(Context context, String fileName, ArrayList<Feeling> feelings) {
         try{
-            FileOutputStream fos = openFileOutput(fileName, contextMode);
+            FileOutputStream fos = context.openFileOutput(fileName, context.MODE_PRIVATE);
 
             BufferedWriter output = new BufferedWriter(new OutputStreamWriter(fos));
 
@@ -68,13 +74,11 @@ public class FileForFeel extends AppCompatActivity implements Serializable {
 
             //System.out.println(fos);
 
-            Toast.makeText(getBaseContext(), "Saved", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, "Saved", Toast.LENGTH_LONG).show();
 
             output.flush();
 
             fos.close();
-
-            //Toast.makeText(getBaseContext(), "Saved", Toast.LENGTH_LONG).show();
         }
         catch (Exception e){
             e.printStackTrace();

@@ -12,31 +12,13 @@ public class Fear extends Feeling {
 
     private int imageResourceID;
 
-    public Fear(){
+    public Fear() {
 
         fear = setFeeling();
 
         imageResourceID = setImageResourceID();
 
-        countFear++;
     }
-
-    @Override
-    public String returnCounter() {
-        return ""+countFear;
-    }
-
-    @Override
-    public int getCounter() {
-        return countFear;
-    }
-
-    @Override
-    public void setCounter(int count) {
-        countFear = count;
-    }
-
-    public void destructor(){countFear--;}
 
     public String setFeeling(){
         return "I'm frightened.";

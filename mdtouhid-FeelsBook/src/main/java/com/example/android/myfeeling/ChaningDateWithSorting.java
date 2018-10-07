@@ -28,34 +28,34 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
 import java.lang.reflect.Type;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Locale;
+import java.util.TimeZone;
 
 public class ChaningDateWithSorting extends AppCompatActivity {
 
-    ArrayList<Feeling> feelings;
+    private ArrayList<Feeling> feelings = new ArrayList<Feeling>();
 
-    Feeling feel;
+    FileForFeel file = new FileForFeel(this);
 
     int itemPosition;
-
-    String date;
-
-    String time;
-
-    String date_time;
-
-    boolean isTimePicked = false;
-
-    boolean isDatePicked = false;
-
-
 
     private DatePickerDialog.OnDateSetListener mDateSetListerner;
 
     private TimePickerDialog.OnTimeSetListener mTimeSetListerner;
+
+    Calendar calendar = Calendar.getInstance();
+
+    String time;
+
+    String date;
+
+    String date_time;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,9 +64,7 @@ public class ChaningDateWithSorting extends AppCompatActivity {
 
         Toast.makeText(getBaseContext(), "To Edit Date and Time : Just Click", Toast.LENGTH_LONG).show();
 
-        Bundle bundle = getIntent().getExtras();
-
-        feelings = (ArrayList<Feeling>)bundle.getSerializable("adapter");
+        feelings = file.loadFromFile(this, "feels.sav", feelings);
 
         final FeelingsAdapter adapter = new FeelingsAdapter(this, feelings);
 
@@ -80,11 +78,10 @@ public class ChaningDateWithSorting extends AppCompatActivity {
                 //ListView Clicked item index
                 itemPosition = position;
 
-                Calendar calendar = Calendar.getInstance();
                 int year = calendar.get(Calendar.YEAR);
                 int month = calendar.get(Calendar.MONTH);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
-                int hour = calendar.get(Calendar.HOUR);
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int minute = calendar.get(Calendar.MINUTE);
 
                 DatePickerDialog datePickerDialog = new DatePickerDialog(
@@ -96,18 +93,12 @@ public class ChaningDateWithSorting extends AppCompatActivity {
                 datePickerDialog.show();
 
                 TimePickerDialog timePickerDialog = new TimePickerDialog(
-                        ChaningDateWithSorting.this, android.R.style.Theme_Dialog, mTimeSetListerner, hour, minute, true
+                        ChaningDateWithSorting.this, android.R.style.Theme_Dialog, mTimeSetListerner, hour , minute, true
                 );
 
                 timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 timePickerDialog.show();
-
-                // ListView Clicked item value
-                //String  itemValue    = (String) listView.getItemAtPosition(position);
-
-
-                // Show Alert
 
             }
         });
@@ -116,13 +107,29 @@ public class ChaningDateWithSorting extends AppCompatActivity {
 
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day){
-                date = year + "-" + month + "-" + day;
+                month = month + 1;
+                String yearS = String.valueOf(year);
+                String monthS = String.valueOf(month);
+                String dayS = String.valueOf(day);
+
+                if (monthS.length() != 2){
+                    monthS = "0" + monthS;
+                }
+
+                if (dayS.length() != 2){
+                    dayS = "0" + dayS;
+
+                }
+
+                date = yearS + "-" + monthS + "-" + dayS;
+
                 if (date != null && time != null){
-                    date_time = date + "T" + time;
+                    date_time = date + 'T' + time;
+
                     feelings.get(itemPosition).setFeelingTime(date_time);
                     feelings = sortArrayList(feelings);
                     adapter.notifyDataSetChanged();
-                    saveInFile();
+                    file.saveInFile(getBaseContext(), "feels.sav", feelings);
                     Toast.makeText(getBaseContext(),"Position :"+itemPosition, Toast.LENGTH_LONG).show();
                 }
 
@@ -133,68 +140,19 @@ public class ChaningDateWithSorting extends AppCompatActivity {
         mTimeSetListerner = new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                time = hourOfDay + ":" + minute + ":00";
+
+                String hourS = "" + hourOfDay;
+                String minuteS = "" + minute;
+                if (hourS.length() != 2){
+                    hourS = "0" + hourS;
+                }
+
+                if (minuteS.length() != 2){
+                    minuteS ="0" + minuteS;
+                }
+                time = hourS + ":" + minuteS + ":00";
             }
         };
-
-    }
-
-    private void saveInFile() {
-        try{
-            FileOutputStream fos = openFileOutput("feels.sav", Context.MODE_PRIVATE);
-
-            BufferedWriter output = new BufferedWriter(new OutputStreamWriter(fos));
-
-            Gson gson = new Gson();
-
-            gson.toJson(feelings, output);
-
-            //System.out.println(gson.toJson(feelings));
-
-            //System.out.println(fos);
-
-            Toast.makeText(getBaseContext(), "Saved", Toast.LENGTH_LONG).show();
-
-            output.flush();
-
-            fos.close();
-
-            //Toast.makeText(getBaseContext(), "Saved", Toast.LENGTH_LONG).show();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(getBaseContext(), "Error saving file!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    private void loadFromFile(){
-
-        try{
-            FileInputStream fis = openFileInput("feels.sav");
-
-            BufferedReader input = new BufferedReader(new InputStreamReader(fis));
-
-            Gson gson = new Gson();
-
-            Type listType = new TypeToken<ArrayList<EmptyNess>>(){}.getType();
-
-            feelings = gson.fromJson(input, listType);
-
-            System.out.println(feelings.size());
-
-            System.out.println(gson.toJson(feelings));
-
-            input.close();
-
-            fis.close();
-
-            Toast.makeText(getBaseContext(), "File was read!", Toast.LENGTH_LONG).show();
-
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(getBaseContext(), "Error reading file!", Toast.LENGTH_SHORT).show();
-        }
 
     }
 

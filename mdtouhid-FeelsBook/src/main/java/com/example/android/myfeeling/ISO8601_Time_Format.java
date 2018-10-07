@@ -13,7 +13,7 @@ public class ISO8601_Time_Format {
     private String timeRightNow;
 
     // A string variable that will store the timeZone information
-    final String timeZone = "America/Edmonton";
+    final String TIME_ZONE = "America/Edmonton";
 
 
     // Constructor of the class that will work as a setter to set the time in timeRightNow
@@ -21,6 +21,7 @@ public class ISO8601_Time_Format {
     public ISO8601_Time_Format(){
         // A date object of type Date that will get current date
         Date date = new Date();
+
         /*
          A dateFormat object of type DateFormat that will call its superclass constructor
          SimpleDateFormat with
@@ -29,7 +30,7 @@ public class ISO8601_Time_Format {
           */
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss", Locale.CANADA);
         // setTimeZone will set the timeZone in current date format
-        dateFormat.setTimeZone(TimeZone.getTimeZone(timeZone));
+        dateFormat.setTimeZone(TimeZone.getTimeZone(TIME_ZONE));
         // The formatted date is going to be stored in timeRightNow
         timeRightNow = dateFormat.format(date);
     }

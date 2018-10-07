@@ -73,11 +73,6 @@ public class FeelingsAdapter extends ArrayAdapter<Feeling> {
 
         iconView.setImageResource(currentFeel.getImageResourceID());
 
-        TextView counterTextView = (TextView)listItemView.findViewById(R.id.counter_text_view);
-
-
-        counterTextView.setText(currentFeel.returnCounter());
-
 //        final ImageView iconView1 = (ImageView)listItemView.findViewById(R.id.image_del);
 //
 //        //iconView1.setImageResource(R.drawable.delete);
