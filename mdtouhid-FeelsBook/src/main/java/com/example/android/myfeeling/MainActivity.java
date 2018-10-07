@@ -1,5 +1,6 @@
 package com.example.android.myfeeling;
 
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 
@@ -28,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        feelings = file.loadFromFile(this, FILE_NAME, feelings);
+        loadFromFile1();
 
         Button historyButton = (Button)findViewById(R.id.history);
 
@@ -89,7 +102,8 @@ public class MainActivity extends AppCompatActivity {
         //Clearing the text field for new comments
         editText.setText("");
 
-        file.saveInFile(this, FILE_NAME, feelings);
+        saveInFile();
+        //file.saveInFile(this, FILE_NAME, feelings);
     }
 
     //Upon clicking Joy button onClicJoy will be executed
@@ -109,7 +123,8 @@ public class MainActivity extends AppCompatActivity {
         //Clearing the text field for new comments
         editText.setText("");
 
-        file.saveInFile(this, FILE_NAME, feelings);
+        //file.saveInFile(this, FILE_NAME, feelings);
+        saveInFile();
     }
 
     //Upon clicking Surprise button onClickSurprise will be executed
@@ -130,7 +145,9 @@ public class MainActivity extends AppCompatActivity {
 
         editText.setText("");
 
-        file.saveInFile(this, FILE_NAME, feelings);
+        //file.saveInFile(this, FILE_NAME, feelings);
+
+        saveInFile();
     }
 
     //Upon clicking Sad button onClickSad will be executed
@@ -150,7 +167,9 @@ public class MainActivity extends AppCompatActivity {
         //Clearing the text field for new comments
         editText.setText("");
 
-        file.saveInFile(this, FILE_NAME, feelings);
+        //file.saveInFile(this, FILE_NAME, feelings);
+
+        saveInFile();
     }
 
     //Upon clicking Angry button onClickAngry will be executed
@@ -170,7 +189,8 @@ public class MainActivity extends AppCompatActivity {
         //Clearing the text field for new comments
         editText.setText("");
 
-        file.saveInFile(this, FILE_NAME, feelings);
+        //file.saveInFile(this, FILE_NAME, feelings);
+        saveInFile();
     }
 
     //Upon clicking Angry button onClickAngry will be executed
@@ -190,7 +210,8 @@ public class MainActivity extends AppCompatActivity {
         //Clearing the text field for new comments
         editText.setText("");
 
-        file.saveInFile(this, FILE_NAME, feelings);
+        //file.saveInFile(this, FILE_NAME, feelings);
+        saveInFile();
     }
 
     public String commentOnFeeling(){
@@ -205,7 +226,8 @@ public class MainActivity extends AppCompatActivity {
         // Clears the whole ArrayList of Type Feelings
         feelings.clear();
         primaryDisplay();
-        file.saveInFile(this, FILE_NAME, feelings);
+        //file.saveInFile(this, FILE_NAME, feelings);
+        saveInFile();
     }
 
     //Primarily shows the data on the app
@@ -255,7 +277,63 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        feelings = file.loadFromFile(this, FILE_NAME, feelings);
+        loadFromFile1();
+    }
+
+    protected void loadFromFile1(){
+
+        try{
+            FileInputStream fis = openFileInput(FILE_NAME);
+
+            BufferedReader input = new BufferedReader(new InputStreamReader(fis));
+
+            Gson gson = new Gson();
+
+            Type listType = new TypeToken<ArrayList<EmptyNess>>(){}.getType();
+
+            feelings = gson.fromJson(input, listType);
+
+            System.out.println(feelings.size());
+
+            System.out.println(gson.toJson(feelings));
+
+            input.close();
+
+            fis.close();
+
+            Toast.makeText(this, "File was read!", Toast.LENGTH_LONG).show();
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getBaseContext(), "Error reading file!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void saveInFile() {
+        try{
+            FileOutputStream fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
+
+            BufferedWriter output = new BufferedWriter(new OutputStreamWriter(fos));
+
+            Gson gson = new Gson();
+
+            gson.toJson(feelings, output);
+
+            //System.out.println(gson.toJson(feelings));
+
+            //System.out.println(fos);
+
+            Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
+
+            output.flush();
+
+            fos.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Toast.makeText(getBaseContext(), "Error saving file!", Toast.LENGTH_SHORT).show();
+        }
     }
 
 }
