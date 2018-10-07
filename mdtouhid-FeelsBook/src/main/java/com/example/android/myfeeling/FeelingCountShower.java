@@ -1,19 +1,13 @@
+/**
+ * @author: Md Touhidul Islam
+ * @date: 2018-10-07
+ */
+
 package com.example.android.myfeeling;
 
-import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStreamReader;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class FeelingCountShower extends AppCompatActivity {

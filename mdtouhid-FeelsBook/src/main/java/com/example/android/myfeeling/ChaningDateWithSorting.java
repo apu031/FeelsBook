@@ -1,3 +1,8 @@
+/**
+ * @author: Md Touhidul Islam
+ * @date: 2018-10-07
+ */
+
 package com.example.android.myfeeling;
 
 import android.app.DatePickerDialog;
@@ -155,6 +160,10 @@ public class ChaningDateWithSorting extends AppCompatActivity {
         };
 
     }
+
+    /**
+     * Source of Idea: https://stackoverflow.com/questions/5927109/sort-objects-in-arraylist-by-date
+     */
 
     public ArrayList<Feeling> sortArrayList(ArrayList<Feeling> feelings){
         Collections.sort(feelings, new Comparator<Feeling>() {

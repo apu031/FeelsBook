@@ -1,6 +1,10 @@
+/**
+ * @author: Md Touhidul Islam
+ * @date: 2018-10-07
+ */
+
 package com.example.android.myfeeling;
 
-import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;

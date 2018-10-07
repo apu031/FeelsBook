@@ -1,6 +1,9 @@
+/**
+ * @author: Md Touhidul Islam
+ * @date: 2018-10-07
+ */
 package com.example.android.myfeeling;
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -319,10 +322,6 @@ public class MainActivity extends AppCompatActivity {
             Gson gson = new Gson();
 
             gson.toJson(feelings, output);
-
-            //System.out.println(gson.toJson(feelings));
-
-            //System.out.println(fos);
 
             Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
 

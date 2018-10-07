@@ -1,8 +1,9 @@
+/**
+ * @author: Md Touhidul Islam
+ * @date: 2018-10-07
+ */
+
 package com.example.android.myfeeling;
-
-import com.google.gson.annotations.SerializedName;
-
-import java.io.Serializable;
 
 public class EmptyNess extends Feeling {
 
