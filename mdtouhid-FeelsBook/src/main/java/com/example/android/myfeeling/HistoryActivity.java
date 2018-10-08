@@ -29,7 +29,12 @@ public class HistoryActivity extends AppCompatActivity {
 
         Toast.makeText(getBaseContext(), "To Delete: Just Click", Toast.LENGTH_LONG).show();
 
-        feelings = file.loadFromFile(this, "feels.sav", feelings);
+        try {
+            feelings = file.loadFromFile(this, "feels.sav", feelings);
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            Toast.makeText(getBaseContext(), "Error reading file!", Toast.LENGTH_SHORT).show();
+        }
 
         final FeelingsAdapter adapter = new FeelingsAdapter(this, feelings);
 

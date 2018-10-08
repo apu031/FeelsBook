@@ -8,6 +8,8 @@ package com.example.android.myfeeling;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.ArrayList;
 
 public class FeelingCountShower extends AppCompatActivity {
@@ -24,7 +26,12 @@ public class FeelingCountShower extends AppCompatActivity {
 
         FileForFeel file = new FileForFeel(this);
 
-        feelings = file.loadFromFile(this,"feels.sav", feelings);
+        try {
+            feelings = file.loadFromFile(this,"feels.sav", feelings);
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            Toast.makeText(getBaseContext(), "Error reading file!", Toast.LENGTH_SHORT).show();
+        }
 
         FeelingCounter countAll = new FeelingCounter(feelings, arraycount);
 

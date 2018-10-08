@@ -11,8 +11,6 @@ import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
-import com.example.android.myfeeling.EmptyNess;
-import com.example.android.myfeeling.Feeling;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -20,21 +18,17 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class FileForFeel extends AppCompatActivity {
 
-    private Context context;
+    Context context;
 
     public FileForFeel(Context context){
-
         context = context;
-
     }
     public ArrayList<Feeling> loadFromFile(Context context, String fileName, ArrayList<Feeling> feelings){
 
@@ -48,10 +42,6 @@ public class FileForFeel extends AppCompatActivity {
             Type listType = new TypeToken<ArrayList<EmptyNess>>(){}.getType();
 
             feelings = gson.fromJson(input, listType);
-
-            System.out.println(feelings.size());
-
-            System.out.println(gson.toJson(feelings));
 
             input.close();
 
@@ -78,10 +68,6 @@ public class FileForFeel extends AppCompatActivity {
             Gson gson = new Gson();
 
             gson.toJson(feelings, output);
-
-            //System.out.println(gson.toJson(feelings));
-
-            //System.out.println(fos);
 
             Toast.makeText(context, "Saved", Toast.LENGTH_LONG).show();
 

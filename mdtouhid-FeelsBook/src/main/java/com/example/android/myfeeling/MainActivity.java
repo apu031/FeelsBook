@@ -29,8 +29,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
-    public final String FILE_NAME = "feels.sav";
-
     FileForFeel file = new FileForFeel(this);
 
     //Creat an ArrayList of type Feeling
@@ -44,7 +42,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        loadFromFile1();
+        try {
+            feelings = file.loadFromFile(this, "feels.sav", feelings);
+        }catch(NullPointerException e){
+            e.printStackTrace();
+            Toast.makeText(getBaseContext(), "Error reading file!", Toast.LENGTH_SHORT).show();
+        }
 
         Button historyButton = (Button)findViewById(R.id.history);
 
@@ -105,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
         //Clearing the text field for new comments
         editText.setText("");
 
-        saveInFile();
+        file.saveInFile(getBaseContext(), "feels.sav", feelings);
         //file.saveInFile(this, FILE_NAME, feelings);
     }
 
@@ -127,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
         editText.setText("");
 
         //file.saveInFile(this, FILE_NAME, feelings);
-        saveInFile();
+        file.saveInFile(getBaseContext(), "feels.sav", feelings);
     }
 
     //Upon clicking Surprise button onClickSurprise will be executed
@@ -150,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
 
         //file.saveInFile(this, FILE_NAME, feelings);
 
-        saveInFile();
+        file.saveInFile(getBaseContext(), "feels.sav", feelings);
     }
 
     //Upon clicking Sad button onClickSad will be executed
@@ -172,7 +175,7 @@ public class MainActivity extends AppCompatActivity {
 
         //file.saveInFile(this, FILE_NAME, feelings);
 
-        saveInFile();
+        file.saveInFile(getBaseContext(), "feels.sav", feelings);
     }
 
     //Upon clicking Angry button onClickAngry will be executed
@@ -193,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         editText.setText("");
 
         //file.saveInFile(this, FILE_NAME, feelings);
-        saveInFile();
+        file.saveInFile(getBaseContext(), "feels.sav", feelings);
     }
 
     //Upon clicking Angry button onClickAngry will be executed
@@ -214,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
         editText.setText("");
 
         //file.saveInFile(this, FILE_NAME, feelings);
-        saveInFile();
+        file.saveInFile(getBaseContext(), "feels.sav", feelings);
     }
 
     public String commentOnFeeling(){
@@ -230,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
         feelings.clear();
         primaryDisplay();
         //file.saveInFile(this, FILE_NAME, feelings);
-        saveInFile();
+        file.saveInFile(getBaseContext(), "feels.sav", feelings);
     }
 
     //Primarily shows the data on the app
@@ -280,58 +283,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        loadFromFile1();
-    }
-
-    protected void loadFromFile1(){
-
-        try{
-            FileInputStream fis = openFileInput(FILE_NAME);
-
-            BufferedReader input = new BufferedReader(new InputStreamReader(fis));
-
-            Gson gson = new Gson();
-
-            Type listType = new TypeToken<ArrayList<EmptyNess>>(){}.getType();
-
-            feelings = gson.fromJson(input, listType);
-
-            System.out.println(feelings.size());
-
-            System.out.println(gson.toJson(feelings));
-
-            input.close();
-
-            fis.close();
-
-            Toast.makeText(this, "File was read!", Toast.LENGTH_LONG).show();
-
-        }
-        catch (Exception e){
+        try {
+            feelings = file.loadFromFile(this, "feels.sav", feelings);
+        }catch(NullPointerException e){
             e.printStackTrace();
             Toast.makeText(getBaseContext(), "Error reading file!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public void saveInFile() {
-        try{
-            FileOutputStream fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
-
-            BufferedWriter output = new BufferedWriter(new OutputStreamWriter(fos));
-
-            Gson gson = new Gson();
-
-            gson.toJson(feelings, output);
-
-            Toast.makeText(this, "Saved", Toast.LENGTH_LONG).show();
-
-            output.flush();
-
-            fos.close();
-        }
-        catch (Exception e){
-            e.printStackTrace();
-            Toast.makeText(getBaseContext(), "Error saving file!", Toast.LENGTH_SHORT).show();
         }
     }
 
