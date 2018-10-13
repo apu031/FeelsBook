@@ -12,16 +12,20 @@
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".HistoryActivity"
-            android:label="FeelsBook History" />
-        <activity android:name=".ChaningDateWithSorting" />
-        <activity android:name=".JustTheDateClockMenu" />
-        <activity android:name=".FeelingCountShower" />
+            android:label="FeelsBook History"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".ChaningDateWithSorting"
+            android:label="Date Editor"
+            android:parentActivityName=".MainActivity"></activity>
+        <activity
+            android:name=".FeelingCountShower"
+            android:label="Counted Feelings"
+            android:parentActivityName=".MainActivity"></activity>
     </application>
-
 </manifest>
